@@ -5,14 +5,14 @@ LONG_DESCRIPTION = open('README.md').read()
 
 
 setup(
-    name='ssm-parameter-store',
+    name='ssm-parameter-store-cc',
     use_scm_version=True,
     setup_requires=['setuptools_scm'],
-    description='Simple Python wrapper for getting values from AWS Systems Manager Parameter Store',
+    description='Simple Python wrapper for getting values from AWS Systems Manager Parameter Store-fork',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
-    url='http://github.com/christippett/ssm-parameter-store',
-    author='Chris Tippett',
+    url='https://github.com/binaryCrossEntropy/ssm-parameter-store-cc',
+    author='Iqbal Singh',
     author_email='git@christippett.dev',
     license='MIT',
     package_dir={'': 'src'},
