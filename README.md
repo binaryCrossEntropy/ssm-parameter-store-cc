@@ -15,10 +15,20 @@ All parameters are returned as a Python `dict`.
 
 ## Installation
 
+PyPI Project: [https://pypi.org/project/ssm-parameter-store-cc/](https://pypi.org/project/ssm-parameter-store-cc/)
+
 Install with `pip`:
 
 ```bash
 pip install ssm-parameter-store-cc
+```
+
+Or with `uv`:
+
+```bash
+uv pip install ssm-parameter-store-cc
+or
+uv add ssm-parameter-store-cc
 ```
 
 ## Usage
