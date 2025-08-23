@@ -6,30 +6,17 @@ LONG_DESCRIPTION = open('README.md').read()
 
 setup(
     name='ssm-parameter-store-cc',
-    use_scm_version=True,
-    setup_requires=['setuptools_scm'],
+    version='0.1.0',
     description='Simple Python wrapper for getting values from AWS Systems Manager Parameter Store-fork',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',
     url='https://github.com/binaryCrossEntropy/ssm-parameter-store-cc',
     author='Iqbal Singh',
-    author_email='git@christippett.dev',
+    author_email='iqbalamo93@gmail.com',
     license='MIT',
     package_dir={'': 'src'},
     packages=find_packages('src'),
     install_requires=['boto3'],
-    classifiers=[
-        'Environment :: Web Environment',
-        'Framework :: Django',
-        'Operating System :: OS Independent',
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: Implementation :: PyPy',
-    ],
+    python_requires='>=3.10',
     zip_safe=False
 )
