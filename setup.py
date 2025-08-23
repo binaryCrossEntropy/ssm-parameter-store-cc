@@ -6,7 +6,7 @@ LONG_DESCRIPTION = open('README.md').read()
 
 setup(
     name='ssm-parameter-store-cc',
-    version='0.1.0',
+    version='0.1.1',
     description='Simple Python wrapper for getting values from AWS Systems Manager Parameter Store-fork',
     long_description=LONG_DESCRIPTION,
     long_description_content_type='text/markdown',

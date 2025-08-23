@@ -1,46 +1,39 @@
-SSM Parameter Store
-=============================================================
+# SSM Parameter Store CC
 
-[![PyPI version](https://img.shields.io/pypi/v/ssm-parameter-store.svg)](https://pypi.python.org/pypi/ssm-parameter-store)
-[![Build status](https://img.shields.io/travis/christippett/ssm-parameter-store.svg)](https://travis-ci.org/christippett/ssm-parameter-store)
-[![Coverage](https://img.shields.io/coveralls/github/christippett/ssm-parameter-store.svg)](https://coveralls.io/github/christippett/ssm-parameter-store?branch=master)
-[![Python versions](https://img.shields.io/pypi/pyversions/ssm-parameter-store.svg)](https://pypi.python.org/pypi/ssm-parameter-store)
-[![Github license](https://img.shields.io/github/license/christippett/ssm-parameter-store.svg)](https://github.com/christippett/ssm-parameter-store)
+[![PyPI version](https://img.shields.io/pypi/v/ssm-parameter-store-cc.svg)](https://pypi.python.org/pypi/ssm-parameter-store-cc)
+[![Upload Python Package](https://github.com/binaryCrossEntropy/ssm-parameter-store-cc/actions/workflows/python-publish.yml/badge.svg)](https://github.com/binaryCrossEntropy/ssm-parameter-store-cc/actions/workflows/python-publish.yml)
+[![Python versions](https://img.shields.io/pypi/pyversions/ssm-parameter-store-cc.svg)](https://pypi.python.org/pypi/ssm-parameter-store-cc)
+[![Github license](https://img.shields.io/github/license/binaryCrossEntropy/ssm-parameter-store-cc.svg)](https://github.com/binaryCrossEntropy/ssm-parameter-store-cc)
 
-Description
-===========
+## Description
 
-This is a simple Python wrapper for getting values from AWS Systems Manager
-Parameter Store.
+This is a simple Python wrapper for getting values from AWS Systems Manager Parameter Store. This fork removes the `pkg_resources` dependency.
 
 The module supports getting a single parameter, multiple parameters or all parameters matching a particular path.
 
 All parameters are returned as a Python `dict`.
 
-Installation
-============
+## Installation
 
 Install with `pip`:
 
-``` bash
-pip install ssm-parameter-store
+```bash
+pip install ssm-parameter-store-cc
 ```
 
-Usage
-=====
+## Usage
 
 Import the module and create a new instance of `EC2ParameterStore`.
 
 ```python
-from ssm_parameter_store import EC2ParameterStore
+from ssm_parameter_store_cc import EC2ParameterStore
 
 store = EC2ParameterStore()
 ```
 
-AWS Credentials
----------------
+### AWS Credentials
 
-`ssm-parameter-store` uses `boto3` under the hood and therefore inherits
+`ssm-parameter-store-cc` uses `boto3` under the hood and therefore inherits
 the same mechanism for looking up AWS credentials. See [configuring
 credentials](https://boto3.readthedocs.io/en/latest/guide/configuration.html#configuring-credentials)
 in the Boto 3 documentation for more information.
@@ -49,8 +42,8 @@ in the Boto 3 documentation for more information.
 
 For example:
 
-``` python
-from ssm_parameter_store import EC2ParameterStore
+```python
+from ssm_parameter_store_cc import EC2ParameterStore
 
 store = EC2ParameterStore(
     aws_access_key_id=ACCESS_KEY,
@@ -60,12 +53,11 @@ store = EC2ParameterStore(
 )
 ```
 
-Examples
-========
+## Examples
 
 Given the following parameters:
 
-``` bash
+```bash
 # set default AWS region
 AWS_DEFAULT_REGION=us-west-2
 
@@ -82,11 +74,9 @@ aws ssm put-parameter --name "/prod/db/postgres_username" --value "prod_username
 aws ssm put-parameter --name "/prod/db/postgres_password" --value "prod_password" --type SecureString
 ```
 
+### Get a single parameter
 
-Get a single parameter
-----------------------
-
-``` python
+```python
 parameter = store.get_parameter('param1', decrypt=True)
 
 assert parameter == {
@@ -94,10 +84,9 @@ assert parameter == {
 }
 ```
 
-Get multiple parameters
------------------------
+### Get multiple parameters
 
-``` python
+```python
 parameters = store.get_parameters(['param1', 'param2'])
 
 assert parameters == {
@@ -106,10 +95,9 @@ assert parameters == {
 }
 ```
 
-Get parameters by path
-----------------------
+### Get parameters by path
 
-``` python
+```python
 parameters = store.get_parameters_by_path('/dev/', recursive=True)
 
 assert parameters == {
@@ -121,7 +109,7 @@ assert parameters == {
 
 By default `get_parameters_by_path` strips the path from each parameter name. To return a parameter's full name, set `strip_path` to `False`.
 
-``` python
+```python
 parameters = store.get_parameters_by_path('/dev/', strip_path=False, recursive=True)
 
 assert parameters == {
@@ -131,11 +119,11 @@ assert parameters == {
 }
 ```
 
-Get parameters with original hierarchy
---------------------------------------
+### Get parameters with original hierarchy
+
 You can also get parameters by path, but in a nested structure that models the path hierarchy.
 
-``` python
+```python
 parameters = store.get_parameters_with_hierarchy('/dev/')
 
 assert parameters == {
@@ -152,7 +140,7 @@ assert parameters == {
 By default `get_parameters_with_hierarchy` strips the leading path component. To return the selected parameters
 with the full hierarchy, set `strip_path` to `False`.
 
-``` python
+```python
 parameters = store.get_parameters_with_hierarchy('/dev/', strip_path=False)
 
 assert parameters == {
@@ -168,14 +156,12 @@ assert parameters == {
 }
 ```
 
-
-Populating Environment Variables
-================================
+## Populating Environment Variables
 
 The module includes a static method on `EC2ParameterStore` to help populate environment variables. This can be helpful when integrating with a library like [`django-environ`](https://github.com/joke2k/django-environ).
 
-Example
--------
+### Example
+
 Given the following parameters:
 
 ```bash
@@ -186,7 +172,7 @@ aws ssm put-parameter --name "/prod/django/REDIS_URL" --value "redis://redis-pro
 
 ```python
 import environ
-from ssm_parameter_store import EC2ParameterStore
+from ssm_parameter_store_cc import EC2ParameterStore
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -213,8 +199,7 @@ CACHES = {
 }
 ```
 
-Related Projects
-================
+## Related Projects
 
 - **[param-store](https://github.com/LabD/python-param-store)** – 
 Python module to store secrets in secret stores
